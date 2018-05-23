@@ -1,7 +1,9 @@
-<form>
+<form (submit)='onSubmit($event, username.value, password.value)' >
   <label for='username'>Benutzername</label>
-  <input type='text' name='username' id='username'>
+  <input type='text' name='username' id='username' #username>
   <label for='password'>Passwort</label>
-  <input type='password' name='password' id='password'>
+  <input type='password' name='password' id='password' #password>
   <input type='submit' value='Anmelden' />
 </form>
+<div *ngIf='currentUsername'>Benutzername: {{currentUsername}}</div>
+<div *ngIf='currentPassword'>Passwort: {{currentPassword}}</div>
