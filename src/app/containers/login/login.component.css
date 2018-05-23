@@ -1,0 +1,9 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
+input[type='submit'] {
+  margin-top: 1em;
+}
