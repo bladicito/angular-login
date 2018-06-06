@@ -1,9 +1,26 @@
 <form (submit)='onSubmit($event, username.value, password.value)' >
-  <label for='username'>Benutzername</label>
-  <input type='text' name='username' id='username' #username>
-  <label for='password'>Passwort</label>
-  <input type='password' name='password' id='password' #password>
-  <input type='submit' value='Anmelden' />
+  <div class="form-group">
+    <label  for='username'>User Name</label>
+    <input  type="email" class="form-control" id="username"  placeholder="Enter email"  [value]="emailField" (input)="UpdateEmail($event)" novalidate #username>
+    <div *ngIf='!emailValid && !emailEmpty' class="alert alert-danger" role="alert">
+      Email address should be a valid one.
+    </div>
+    <div *ngIf='emailValid' class="alert alert-success" role="alert">
+     valid email address
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Password" [value]="passwordField" (input)="UpdatePassword($event)" #password>
+    <div *ngIf='!strongPassword && !passwordEmpty' class="alert alert-danger" role="alert">
+      the provided password is too weak.
+    </div>
+    <div *ngIf='strongPassword' class="alert alert-success" role="alert">
+      Strong password!
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" value="Anmelden" [disabled]="!formProperlyFilledIn()">Submit</button>
 </form>
-<div *ngIf='currentUsername'>Benutzername: {{currentUsername}}</div>
-<div *ngIf='currentPassword'>Passwort: {{currentPassword}}</div>
+
+<div *ngIf='currentUsername'>UserName/Email: {{emailField}}</div>
+<div *ngIf='currentPassword'>Password: {{passwordField}}</div>
